@@ -17,6 +17,7 @@ export default function Editor() {
   const rule = CONTENT_TYPES.find((r) => r.id === id) ?? CONTENT_TYPES[0];
   const [blocks, setBlocks] = useState<TypeBlock[]>(() => rule.blocks.map((b) => ({ ...b })));
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState(false);
   const [bgImage, setBgImage] = useState<string | null>(null);
   const [imgSettings, setImgSettings] = useState<ImageSettings>(defaultImageSettings);
   const [fonts, setFonts] = useState<{ name: string; family: string }[]>([]);
@@ -113,26 +114,47 @@ export default function Editor() {
             {/* Canvas surface */}
             <div
               className="absolute inset-0 select-none"
-              style={bgImage ? {
-                backgroundImage: `url(${bgImage})`,
-                backgroundPosition: `${imgSettings.x}% ${imgSettings.y}%`,
-                backgroundSize: `${imgSettings.scale}%`,
-                backgroundRepeat: "no-repeat",
-                filter: `brightness(${imgSettings.brightness}%) contrast(${imgSettings.contrast}%) saturate(${imgSettings.saturation}%) blur(${imgSettings.blur}px) grayscale(${imgSettings.grayscale}%)`,
-                opacity: imgSettings.opacity / 100,
-                backgroundBlendMode: imgSettings.blendMode as any,
-              } : { background: rule.canvasBg }}
-              onClick={() => setSelectedId(null)}
+              style={{ background: rule.canvasBg }}
+              onClick={() => { setSelectedId(null); setSelectedImage(false); }}
             >
-              {/* Drop hint */}
               {dragOver && (
                 <div className="absolute inset-0 bg-indigo-500/15 flex items-center justify-center z-20">
-                  <span className="text-sm font-medium text-indigo-600 bg-white/90 px-4 py-2 rounded-xl shadow-lg">
-                    Drop font or image here
-                  </span>
+                  <span className="text-sm font-medium text-indigo-600 bg-white/90 px-4 py-2 rounded-xl shadow-lg">Drop font or image here</span>
                 </div>
               )}
             </div>
+            {/* Draggable image */}
+            {bgImage && (
+              <img src={bgImage} alt=""
+                draggable={false}
+                onMouseDown={(e) => {
+                  e.stopPropagation();
+                  setSelectedId(null);
+                  setSelectedImage(true);
+                  const sx = e.clientX; const sy = e.clientY;
+                  const ox = imgSettings.x; const oy = imgSettings.y;
+                  const onM = (ev: MouseEvent) => {
+                    const dx = ((ev.clientX - sx) / (rule.canvasW * scale)) * 100;
+                    const dy = ((ev.clientY - sy) / (rule.canvasH * scale)) * 100;
+                    updateImg({ x: ox + dx, y: oy + dy });
+                  };
+                  const onU = () => { document.removeEventListener("mousemove", onM); document.removeEventListener("mouseup", onU); };
+                  document.addEventListener("mousemove", onM);
+                  document.addEventListener("mouseup", onU);
+                }}
+                className={`absolute cursor-grab active:cursor-grabbing transition-shadow duration-150 ${
+                  selectedImage ? "ring-2 ring-indigo-400/50 z-10" : "hover:ring-1 hover:ring-zinc-400/30"
+                }`}
+                style={{
+                  left: `${imgSettings.x}%`, top: `${imgSettings.y}%`,
+                  width: `${imgSettings.scale}%`,
+                  transform: "translate(-50%, -50%)",
+                  filter: `brightness(${imgSettings.brightness}%) contrast(${imgSettings.contrast}%) saturate(${imgSettings.saturation}%) blur(${imgSettings.blur}px) grayscale(${imgSettings.grayscale}%)`,
+                  opacity: imgSettings.opacity / 100,
+                  mixBlendMode: imgSettings.blendMode as any,
+                }}
+              />
+            )}
             {/* Text blocks */}
             {blocks.map((block) => (
               <TextBlock key={block.id} block={block} scale={scale}
@@ -199,7 +221,7 @@ export default function Editor() {
           )}
 
           {/* Image editing */}
-          {bgImage && (
+          {bgImage && selectedImage && (
             <div className="space-y-3 pt-2 border-t border-zinc-100 dark:border-zinc-800">
               <span className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider">Image</span>
               <SliderField label="Position X" value={imgSettings.x} min={0} max={100} unit="%" onChange={(v) => updateImg({ x: v })} />
@@ -228,9 +250,14 @@ export default function Editor() {
             </div>
           )}
 
-          {!selected && !bgImage && (
+          {!selected && !selectedImage && bgImage && (
             <p className="text-xs text-zinc-400 text-center py-6">
-              Click a text block to edit it.<br />Drag blocks to reposition.<br />Drop font/image files onto the canvas.
+              Click the image or a text block to edit.<br />Drag to reposition.
+            </p>
+          )}
+          {!selected && !selectedImage && !bgImage && (
+            <p className="text-xs text-zinc-400 text-center py-6">
+              Click a text block to edit.<br />Drag to reposition.<br />Drop font/image files onto canvas.
             </p>
           )}
 
