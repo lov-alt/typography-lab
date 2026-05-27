@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: #faf9f6;
+  color: #1e1b2e;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.35s ease, color 0.35s ease;
+}
+
+body.dark {
+  background: #0f0f1a;
+  color: #d4d2e4;
+}
+
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slide-up { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+.page-enter { animation: slide-up 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
+
+.slider {
+  -webkit-appearance: none; appearance: none;
+  width: 100%; height: 4px; background: #e4e4e7; border-radius: 999px;
+  cursor: pointer; transition: background 0.2s;
+}
+.slider:hover { background: #d4d4d8; }
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 14px; height: 14px;
+  background: #6366f1; border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(99,102,241,0.15);
+  transition: box-shadow 0.2s, transform 0.15s;
+}
+.slider::-webkit-slider-thumb:hover { box-shadow: 0 0 0 8px rgba(99,102,241,0.18); transform: scale(1.1); }
+body.dark .slider { background: #2a2a3e; }
+body.dark .slider:hover { background: #3a3a52; }
+
+button:active:not(:disabled) { transform: scale(0.96); transition: transform 0.1s ease; }
+button { transition: transform 0.15s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
+
+input[type="color"] {
+  -webkit-appearance: none; appearance: none; cursor: pointer;
+  border-radius: 8px; padding: 2px; background: #fff;
+  transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+}
+input[type="color"]:hover { transform: scale(1.12); }
+input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+input[type="color"]::-webkit-color-swatch { border: none; border-radius: 6px; }
+
+.custom-scrollbar::-webkit-scrollbar { width: 4px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #d4d4d8; border-radius: 999px; }
+
+::selection { background: rgba(99,102,241,0.2); }
