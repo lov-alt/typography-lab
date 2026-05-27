@@ -4,13 +4,12 @@ import { CONTENT_TYPES } from "../data/typography-rules";
 export default function Home() {
   return (
     <div className="max-w-5xl mx-auto px-6 py-12 sm:py-20">
-      <div className="mb-14">
-        <p className="text-[11px] font-medium text-indigo-500 dark:text-indigo-400 uppercase tracking-[0.25em] mb-5">Typography Lab</p>
-        <h1 className="font-serif text-4xl sm:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-4 leading-[1.1]">
-          选择内容，<br />自动生成版式
+      <div className="mb-16">
+        <h1 className="text-4xl sm:text-5xl font-light tracking-tight text-zinc-900 dark:text-zinc-100 mb-4">
+          Typography for&nbsp;everything
         </h1>
-        <p className="text-sm sm:text-base text-zinc-500 dark:text-zinc-400 max-w-xl leading-relaxed">
-          12 种内容类型，8 个排版历史传统。点击进入后可拖拽文字块、调整字号行高、导入字体和图片。
+        <p className="text-sm text-zinc-400 dark:text-zinc-500 max-w-md leading-relaxed">
+          14 layouts · 8 traditions · drag &amp; drop · import fonts · export CSS
         </p>
       </div>
 
@@ -39,12 +38,9 @@ export default function Home() {
                   <h3 className="font-medium text-sm text-zinc-900 dark:text-zinc-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                     {rule.name.zh}
                   </h3>
-                  <span className="text-[9px] px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-400">
-                    {isLandscape ? "横" : "竖"}
-                  </span>
+                  <span className="text-[9px] px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-400">{isLandscape ? "横" : "竖"}</span>
                 </div>
-                <p className="text-[11px] text-zinc-500 dark:text-zinc-400 leading-relaxed mb-1.5">{rule.desc.zh}</p>
-                <span className="text-[10px] text-zinc-400">{rule.tradition.split("(")[0].trim()}</span>
+                <p className="text-[11px] text-zinc-400 dark:text-zinc-500 leading-relaxed">{rule.desc.zh}</p>
               </div>
             </Link>
           );
