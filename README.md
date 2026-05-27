@@ -1,73 +1,47 @@
-# React + TypeScript + Vite
+<p align="center">
+  <img src="public/favicon.svg" width="64" alt="Typography Lab" />
+</p>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<h1 align="center">Typography Lab</h1>
 
-Currently, two official plugins are available:
+<p align="center">
+  <strong>开源版式可视化实验室</strong><br/>
+  字体配对 · 排版缩放 · 行长控制 · 基线网格<br/>
+  告别猜测，用数据驱动排版决策
+</p>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+<p align="center">
+  <a href="https://lov-alt.github.io/typography-lab/"><img src="https://img.shields.io/badge/demo-live-6366f1?style=flat-square" alt="Live Demo" /></a>
+  <a href="https://github.com/lov-alt/typography-lab/stargazers"><img src="https://img.shields.io/github/stars/lov-alt/typography-lab?style=flat-square&color=f59e0b" alt="Stars" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/lov-alt/typography-lab?style=flat-square&color=6366f1" alt="MIT" /></a>
+</p>
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tools
 
-## Expanding the ESLint configuration
+### Type Scale
+7 种 modular scale（1.2 / 1.25 / 1.333 / 1.414 / 1.5 / 1.618 / Custom），h1–h6 + body + small + caption 九级可视化，px/rem 双值显示，导出 CSS custom properties / Tailwind config / JSON。
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Font Pairing
+Google Fonts 动态加载，标题字体 + 正文字体独立选择，6 种分类筛选，6 组经典预设配对，字重独立调节，实时预览中/英/日样本。
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Measure & Rhythm
+CPL (characters per line) 计算器，最佳 45–75 字符范围指示，行高/段间距/容器宽度滑块，CSS repeating-linear-gradient 基线网格叠加，偏差预警。
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Quick Start
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone https://github.com/lov-alt/typography-lab.git
+cd typography-lab
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Tech Stack
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+React 19 · TypeScript · Vite · Tailwind CSS v4 · React Router · Google Fonts API
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## License
+
+MIT
