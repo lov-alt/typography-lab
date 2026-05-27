@@ -93,6 +93,25 @@ export const CONTENT_TYPES: LayoutRule[] = [
       S("location", "info", "MoMA · 11 West 53 Street · New York", 8, 89, 45, 12, 300, 1.5, 0.05, "left", "#8c7b6b", "body"),
     ],
   },
+  {
+    id: "magazine-cover",
+    name: { zh: "杂志封面", en: "Magazine Cover" },
+    desc: { zh: "时尚杂志封面 — 刊头大字、多条封面标题、日期定价条、中心图预留区", en: "Fashion magazine cover — masthead, multiple cover lines, date/price strip" },
+    tradition: "Magazine Cover Design (Vogue, Harper's Bazaar, 20th c.)",
+    style: ["glamorous", "layered", "bold-masthead", "fashion"],
+    canvasBg: "#f5f0eb", palette: ["#1a1a1a", "#e63946", "#c4a882", "#ffffff", "#2c1810"],
+    canvasW: 800, canvasH: 1100,
+    blocks: [
+      S("masthead", "headline", "VOGUE", 5, 4, 90, 72, 900, 0.9, 0.08, "center", "#1a1a1a", "heading"),
+      S("cover1", "subhead", "THE NEW\nELEGANCE", 8, 16, 40, 36, 700, 1.05, -0.01, "left", "#e63946", "heading"),
+      S("cover2", "subhead", "What to Wear\nThis Summer", 8, 34, 35, 22, 600, 1.15, 0, "left", "#2c1810", "heading"),
+      S("cover3", "subhead", "Beauty\nRevolution", 8, 50, 30, 18, 600, 1.15, 0, "left", "#1a1a1a", "heading"),
+      S("cover4", "subhead", "PLUS\n50 Best\nDresses", 60, 72, 35, 26, 700, 1.05, -0.01, "left", "#e63946", "heading"),
+      S("cover5", "info", "THE CULTURE ISSUE", 8, 62, 40, 13, 500, 1.3, 0.15, "left", "#c4a882", "body"),
+      S("date", "date", "JUNE 2026", 8, 94, 20, 12, 600, 1.3, 0.1, "left", "#1a1a1a", "body"),
+      S("price", "info", "£4.99", 88, 94, 8, 12, 600, 1.3, 0.05, "right", "#1a1a1a", "body"),
+    ],
+  },
   // ── LANDSCAPE / HORIZONTAL ────────────
   {
     id: "magazine-spread",
