@@ -6,6 +6,7 @@ const tools = [
   { path: "/font-pairing", nameKey: "font-pairing" as const },
   { path: "/type-scale", nameKey: "type-scale" as const },
   { path: "/measure-rhythm", nameKey: "measure-rhythm" as const },
+  { path: "/editorial", nameKey: "editorial" as const },
 ];
 
 export default function App() {

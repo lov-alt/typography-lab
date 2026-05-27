@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useI18n } from "../i18n/index";
 
-const toolKeys = ["font-pairing", "type-scale", "measure-rhythm"] as const;
+const toolKeys = ["font-pairing", "type-scale", "measure-rhythm", "editorial"] as const;
 
 const iconMap: Record<string, React.ReactNode> = {
   "font-pairing": (
@@ -19,18 +19,25 @@ const iconMap: Record<string, React.ReactNode> = {
       <rect x="3" y="3" width="18" height="18" rx="2" /><line x1="3" y1="9" x2="21" y2="9" /><line x1="3" y1="15" x2="21" y2="15" /><polyline points="7,12 9,12" /><polyline points="7,18 9,18" />
     </svg>
   ),
+  editorial: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="3" width="7" height="18" rx="1" /><rect x="14" y="3" width="7" height="18" rx="1" /><line x1="10" y1="3" x2="14" y2="3" /><line x1="10" y1="21" x2="14" y2="21" /><line x1="12" y1="3" x2="12" y2="21" strokeWidth="0.5" opacity="0.3" />
+    </svg>
+  ),
 };
 
 const gradientMap: Record<string, string> = {
   "font-pairing": "from-violet-400 via-purple-500 to-fuchsia-600",
   "type-scale": "from-indigo-400 via-blue-500 to-cyan-600",
   "measure-rhythm": "from-emerald-400 via-teal-500 to-cyan-600",
+  editorial: "from-rose-400 via-pink-500 to-fuchsia-600",
 };
 
 const pathMap: Record<string, string> = {
   "font-pairing": "/font-pairing",
   "type-scale": "/type-scale",
   "measure-rhythm": "/measure-rhythm",
+  editorial: "/editorial",
 };
 
 export default function Home() {
@@ -50,7 +57,7 @@ export default function Home() {
         </p>
       </div>
 
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-2 gap-3">
         {toolKeys.map((key) => {
           const tool = t.tools[key];
           const gradient = gradientMap[key];

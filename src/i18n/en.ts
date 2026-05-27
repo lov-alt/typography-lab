@@ -13,6 +13,7 @@ const en: Translations = {
     "font-pairing": { name: "Font Pairing", desc: "Google Fonts pairing preview with category filters and live heading+body combinations" },
     "type-scale": { name: "Type Scale", desc: "7 modular scales — visual h1-h6+body+caption ramp with px/rem values" },
     "measure-rhythm": { name: "Measure & Rhythm", desc: "CPL calculator, line-height/spacing controls, baseline grid" },
+    editorial: { name: "Editorial", desc: "Layout preview — poster, magazine spread, multi-column, real-world typography verification" },
   },
   typeScale: {
     title: "Type Scale", description: "Modular typographic scale — 7 ratios + 9-level visual ramp",
@@ -37,6 +38,15 @@ const en: Translations = {
     containerWidth: "Container Width", cpl: "Characters Per Line", cplOptimal: "Optimal range",
     baselineGrid: "Baseline Grid",
     sample: "Typography is the craft of endowing human language with a durable visual form. Good type design establishes hierarchy, creates rhythm, and guides the reader through content with effortless clarity.",
+  },
+  editorial: {
+    title: "Editorial Layout", description: "Layout preview — poster, magazine spread, multi-column, verify typography in real contexts",
+    layout: "Layout Type", poster: "Poster", magazineSpread: "Magazine Spread", brochure: "Brochure", bookPage: "Book Page",
+    columns: "Columns", showImage: "Image Placeholder", showPullQuote: "Pull Quote", showDropCap: "Drop Cap",
+    headline: "The Art of Type", subhead: "Font · Rhythm · Proportion",
+    bodyText: "Good typography is invisible art. When readers are immersed in the flow of text, they don't notice the font choices, the leading settings, or the measure calculations — but these are precisely where the typographer poured their craft. Every pixel of spacing is the result of deliberate consideration.",
+    pullQuote: "Design is not decoration. It is communication. Good typography lets the words speak for themselves.",
+    caption: "Typography Lab · Open Source Type Tool",
   },
   code: { copy: "Copy", copied: "Copied" },
   common: { back: "Back to Home", add: "+ Add", del: "Del", darkMode: "Toggle dark mode" },

@@ -13,6 +13,7 @@ const ja: Translations = {
     "font-pairing": { name: "Font Pairing", desc: "Google Fonts ペアリングプレビュー、カテゴリフィルター、見出し+本文のライブ比較" },
     "type-scale": { name: "Type Scale", desc: "7種類のモジュラースケール — h1-h6+本文+キャプション、px/rem値表示" },
     "measure-rhythm": { name: "Measure & Rhythm", desc: "CPL計算機（45-75文字）、行間/段落間隔、ベースライングリッド" },
+    editorial: { name: "Editorial", desc: "レイアウトプレビュー — ポスター、雑誌見開き、マルチカラム" },
   },
   typeScale: {
     title: "Type Scale", description: "モジュラータイプスケール — 7種類の比率 + 9段階のビジュアルランプ",
@@ -37,6 +38,15 @@ const ja: Translations = {
     containerWidth: "コンテナ幅", cpl: "1行の文字数", cplOptimal: "最適範囲",
     baselineGrid: "ベースライングリッド",
     sample: "タイポグラフィは、言語に耐久性のある視覚的形態を与える技術です。優れたタイプデザインは階層を確立し、リズムを生み出し、読者をコンテンツへと導きます。",
+  },
+  editorial: {
+    title: "Editorial Layout", description: "レイアウトプレビュー — ポスター、雑誌見開き、マルチカラム",
+    layout: "レイアウト", poster: "ポスター", magazineSpread: "雑誌見開き", brochure: "パンフレット", bookPage: "書籍ページ",
+    columns: "カラム数", showImage: "画像プレースホルダー", showPullQuote: "引用文", showDropCap: "ドロップキャップ",
+    headline: "タイプの芸術", subhead: "フォント · リズム · 比率",
+    bodyText: "良いタイポグラフィは目に見えない芸術です。読者がテキストの流れに没頭しているとき、彼らはフォントの選択や行間の設定、行長の計算に気づきません。しかし、これこそがタイポグラファーが技術を注ぎ込んだ部分なのです。",
+    pullQuote: "デザインは装飾ではない。コミュニケーションである。良いタイポグラフィは言葉を語らせる。",
+    caption: "Typography Lab · オープンソース",
   },
   code: { copy: "コピー", copied: "コピー済み" },
   common: { back: "ホームに戻る", add: "+ 追加", del: "削除", darkMode: "ダークモード" },

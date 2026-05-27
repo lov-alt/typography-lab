@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import TypeScale from "./pages/TypeScale";
 import FontPairing from "./pages/FontPairing";
 import MeasureRhythm from "./pages/MeasureRhythm";
+import Editorial from "./pages/Editorial";
 
 const router = createBrowserRouter([
   { path: "/", element: <App />, children: [
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
     { path: "type-scale", element: <TypeScale /> },
     { path: "font-pairing", element: <FontPairing /> },
     { path: "measure-rhythm", element: <MeasureRhythm /> },
+    { path: "editorial", element: <Editorial /> },
   ]},
 ]);
 
