@@ -4,12 +4,12 @@ import { I18nProvider } from "./i18n/index";
 import "./index.css";
 import App from "./App";
 import Home from "./pages/Home";
-import Archetype from "./pages/Archetype";
+import Editor from "./pages/Editor";
 
 const router = createBrowserRouter([
   { path: "/", element: <App />, children: [
     { index: true, element: <Home /> },
-    { path: ":id", element: <Archetype /> },
+    { path: ":id", element: <Editor /> },
   ]},
 ]);
 
