@@ -3,6 +3,14 @@ import { useParams, Link } from "react-router-dom";
 import { useFontImporter } from "../components/FontImporter";
 import { CONTENT_TYPES, type TypeBlock } from "../data/typography-rules";
 
+interface ImageSettings {
+  x: number; y: number; scale: number;
+  brightness: number; contrast: number; saturation: number; blur: number;
+  grayscale: number; opacity: number; blendMode: string;
+}
+
+const defaultImageSettings: ImageSettings = { x: 50, y: 50, scale: 100, brightness: 100, contrast: 100, saturation: 100, blur: 0, grayscale: 0, opacity: 100, blendMode: "normal" };
+
 export default function Editor() {
   const { id } = useParams<{ id: string }>();
   const { importFont } = useFontImporter();
@@ -10,13 +18,17 @@ export default function Editor() {
   const [blocks, setBlocks] = useState<TypeBlock[]>(() => rule.blocks.map((b) => ({ ...b })));
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [bgImage, setBgImage] = useState<string | null>(null);
+  const [imgSettings, setImgSettings] = useState<ImageSettings>(defaultImageSettings);
   const [fonts, setFonts] = useState<{ name: string; family: string }[]>([]);
   const [dragOver, setDragOver] = useState(false);
+
+  const updateImg = (patch: Partial<ImageSettings>) => setImgSettings((prev) => ({ ...prev, ...patch }));
 
   useEffect(() => {
     setBlocks(rule.blocks.map((b) => ({ ...b })));
     setSelectedId(null);
     setBgImage(null);
+    setImgSettings(defaultImageSettings);
   }, [id]);
 
   const selected = blocks.find((b) => b.id === selectedId);
@@ -101,7 +113,15 @@ export default function Editor() {
             {/* Canvas surface */}
             <div
               className="absolute inset-0 select-none"
-              style={{ background: bgImage ? `url(${bgImage}) center/cover no-repeat` : rule.canvasBg }}
+              style={bgImage ? {
+                backgroundImage: `url(${bgImage})`,
+                backgroundPosition: `${imgSettings.x}% ${imgSettings.y}%`,
+                backgroundSize: `${imgSettings.scale}%`,
+                backgroundRepeat: "no-repeat",
+                filter: `brightness(${imgSettings.brightness}%) contrast(${imgSettings.contrast}%) saturate(${imgSettings.saturation}%) blur(${imgSettings.blur}px) grayscale(${imgSettings.grayscale}%)`,
+                opacity: imgSettings.opacity / 100,
+                backgroundBlendMode: imgSettings.blendMode as any,
+              } : { background: rule.canvasBg }}
               onClick={() => setSelectedId(null)}
             >
               {/* Drop hint */}
@@ -178,7 +198,37 @@ export default function Editor() {
             </div>
           )}
 
-          {!selected && (
+          {/* Image editing */}
+          {bgImage && (
+            <div className="space-y-3 pt-2 border-t border-zinc-100 dark:border-zinc-800">
+              <span className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider">Image</span>
+              <SliderField label="Position X" value={imgSettings.x} min={0} max={100} unit="%" onChange={(v) => updateImg({ x: v })} />
+              <SliderField label="Position Y" value={imgSettings.y} min={0} max={100} unit="%" onChange={(v) => updateImg({ y: v })} />
+              <SliderField label="Scale" value={imgSettings.scale} min={20} max={200} unit="%" onChange={(v) => updateImg({ scale: v })} />
+              <SliderField label="Brightness" value={imgSettings.brightness} min={0} max={200} unit="%" onChange={(v) => updateImg({ brightness: v })} />
+              <SliderField label="Contrast" value={imgSettings.contrast} min={0} max={200} unit="%" onChange={(v) => updateImg({ contrast: v })} />
+              <SliderField label="Saturation" value={imgSettings.saturation} min={0} max={200} unit="%" onChange={(v) => updateImg({ saturation: v })} />
+              <SliderField label="Blur" value={imgSettings.blur} min={0} max={20} unit="px" onChange={(v) => updateImg({ blur: v })} />
+              <SliderField label="Grayscale" value={imgSettings.grayscale} min={0} max={100} unit="%" onChange={(v) => updateImg({ grayscale: v })} />
+              <SliderField label="Opacity" value={imgSettings.opacity} min={0} max={100} unit="%" onChange={(v) => updateImg({ opacity: v })} />
+              <div>
+                <span className="text-[10px] text-zinc-400 mb-1 block">Blend Mode</span>
+                <select value={imgSettings.blendMode}
+                  onChange={(e) => updateImg({ blendMode: e.target.value })}
+                  className="w-full px-2 py-1.5 text-[11px] rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300">
+                  {["normal","multiply","screen","overlay","darken","lighten","color-dodge","color-burn","hard-light","soft-light","difference","exclusion","hue","saturation","color","luminosity"].map(m => (
+                    <option key={m} value={m}>{m}</option>
+                  ))}
+                </select>
+              </div>
+              <button onClick={() => { setBgImage(null); setImgSettings(defaultImageSettings); }}
+                className="w-full py-1.5 text-[11px] font-medium text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-500/10 rounded-lg transition-colors">
+                Remove Image
+              </button>
+            </div>
+          )}
+
+          {!selected && !bgImage && (
             <p className="text-xs text-zinc-400 text-center py-6">
               Click a text block to edit it.<br />Drag blocks to reposition.<br />Drop font/image files onto the canvas.
             </p>
