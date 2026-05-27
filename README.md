@@ -15,6 +15,10 @@
   <a href="LICENSE"><img src="https://img.shields.io/github/license/lov-alt/typography-lab?style=flat-square&color=6366f1" /></a>
 </p>
 
+<p align="center">
+  <img src="docs/preview-editor.svg" alt="Typography Lab Editor" width="100%" />
+</p>
+
 ---
 
 ## How it works
@@ -48,6 +52,36 @@ Each layout is rooted in a real typographic movement:
 - **Minimalism** (Rams, Japanese ma) — whitespace, precision, calm
 - **Editorial / News Design** — multi-column, hierarchical, rhythmic
 - **Corporate Design** (Vignelli) — clean, structured, systematic
+
+## Features
+
+| | |
+|---|---|
+| **14 content types** | Posters, magazines, books, menus, business cards, certificates, brochures, newspapers... |
+| **8 typographic traditions** | Swiss, Didone, New Wave, Humanist, Constructivism, Minimalism, Editorial, Corporate |
+| **Drag & drop canvas** | Every text block and image is draggable — reposition freely |
+| **Live text editing** | Click any block → adjust font size, line height, letter spacing, alignment, color |
+| **Local font import** | Drop `.ttf` / `.otf` / `.woff2` files → auto `@font-face` injection |
+| **Image editing** | Position, scale, brightness, contrast, saturation, blur, grayscale, opacity, 16 blend modes |
+| **Landscape + portrait** | Magazine spreads, brochures, certificates use landscape; posters and books use portrait |
+| **CSS export** | Copy production-ready CSS for any selected element |
+| **Dark mode** | Follows system preference + manual toggle |
+| **Zero dependencies** | No UI library, no backend — pure React + Tailwind |
+
+## Project Structure
+
+```text
+src/
+├── data/typography-rules.ts   # 14 layouts × 8 traditions — the knowledge base
+├── pages/
+│   ├── Home.tsx                # Content type gallery
+│   └── Editor.tsx              # Interactive canvas + controls
+├── components/
+│   └── FontImporter.tsx        # Local font file loader
+├── i18n/                       # zh / en / ja
+├── App.tsx                     # Shell + dark mode + locale
+└── main.tsx                    # Router entry
+```
 
 ## Quick Start
 
