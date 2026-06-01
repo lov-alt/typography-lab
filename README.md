@@ -25,7 +25,7 @@
 
 1. **Pick a content type** — concert poster, magazine cover, book page, business card...
 2. **Get a professional layout** — each type maps to a real typographic tradition with curated fonts, sizes, spacing, and hierarchy
-3. **Drag to customize** — every text block is draggable; click to edit font size, line height, letter spacing, alignment, color
+3. **Drag to customize** — every text block and image is draggable; click to edit font size, line height, letter spacing, alignment, color
 4. **Import your assets** — drop `.ttf` / `.otf` / `.woff2` font files and images directly onto the canvas
 5. **Edit images** — position, scale, brightness, contrast, saturation, blur, grayscale, opacity, 16 blend modes
 6. **Export** — copy CSS for any selected element
@@ -68,29 +68,17 @@ Each layout is rooted in a real typographic movement:
 | **Dark mode** | Follows system preference + manual toggle |
 | **Zero dependencies** | No UI library, no backend — pure React + Tailwind |
 
-## Project Structure
+## Ecosystem
 
-```text
-src/
-├── data/typography-rules.ts   # 14 layouts × 8 traditions — the knowledge base
-├── pages/
-│   ├── Home.tsx                # Content type gallery
-│   └── Editor.tsx              # Interactive canvas + controls
-├── components/
-│   └── FontImporter.tsx        # Local font file loader
-├── i18n/                       # zh / en / ja
-├── App.tsx                     # Shell + dark mode + locale
-└── main.tsx                    # Router entry
-```
+Typography Lab is part of a five-tool open-source suite:
 
-## Quick Start
-
-```bash
-git clone https://github.com/lov-alt/typography-lab.git
-cd typography-lab
-npm install
-npm run dev
-```
+| Tool | What it does |
+|---|---|
+| **[Design Token Studio](https://github.com/lov-alt/design-token-studio)** | Define design tokens — colors, typography, spacing — with WCAG checker and 6 export formats |
+| **[CSS Visual Toolbox](https://github.com/lov-alt/css-visual-toolbox)** | Visually edit CSS properties (clip-path, gradients, shadows, border-radius). 8-framework export |
+| **Typography Lab** ← you are here | Content-driven layout generator. 14 archetypes, 8 traditions |
+| **[Motion Token Studio](https://github.com/lov-alt/motion-token-studio)** | Design motion tokens — cubic-bezier editor, duration scale, 12 presets, 5 export formats |
+| **[Sound Garden](https://github.com/lov-alt/sound-garden)** | Real-time microphone → generative visual landscape (trees, waves, particles, circles) |
 
 ## Tech Stack
 
