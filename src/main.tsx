@@ -11,7 +11,7 @@ const router = createHashRouter([
     { index: true, element: <Home /> },
     { path: ":id", element: <Editor /> },
   ]},
-}], { basename: import.meta.env.DEV ? "/" : "/typography-lab/" });
+]);
 
 createRoot(document.getElementById("root")!).render(
   <I18nProvider><RouterProvider router={router} /></I18nProvider>
